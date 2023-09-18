@@ -26,4 +26,16 @@ public class BookService {
         });
         return new ArrayList<>(books);
     }
+
+    public List<Author> getAuthorData() {
+    List<Author> authors = jdbcTemplate.query("", (ResultSet rs, int rowNum) ->{
+        Author author = new Author();
+        author.setId(rs.getInt("id"));
+        author.setNameAuthor(rs.getString("name_author"));
+        author.setBiography(rs.getString("title"));
+       // author.setBooks(rs.getArray(List<Book>));
+        return author;
+    });
+        return new ArrayList<>(authors);
+    }
 }

@@ -21,7 +21,8 @@ public class MainPageController {
     }
 
     @GetMapping("/main/genres")
-    public String mainGenres() {
+    public String mainGenres(Model model) {
+        model.addAttribute("authorData", bookService.getAuthorData());
         return "genres";
     }
 }
