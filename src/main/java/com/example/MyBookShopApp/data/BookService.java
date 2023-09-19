@@ -28,7 +28,7 @@ public class BookService {
     }
 
     public List<Author> getAuthorData() {
-    List<Author> authors = jdbcTemplate.query("", (ResultSet rs, int rowNum) ->{
+    List<Author> authors = jdbcTemplate.query("SELECT * FROM AUTHORS", (ResultSet rs, int rowNum) ->{
         Author author = new Author();
         author.setId(rs.getInt("id"));
         author.setNameAuthor(rs.getString("name_author"));

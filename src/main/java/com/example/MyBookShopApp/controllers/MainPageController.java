@@ -17,12 +17,17 @@ public class MainPageController {
     @GetMapping("/main")
     public String mainPage(Model model){
         model.addAttribute("bookData", bookService.getBooksData());
+        model.addAttribute("authorData", bookService.getAuthorData());
         return "index";
     }
 
-    @GetMapping("/main/genres")
-    public String mainGenres(Model model) {
-        model.addAttribute("authorData", bookService.getAuthorData());
-        return "genres";
-    }
+//    @GetMapping("/main/genres")
+//    public String mainGenres() {
+//        return "genres";
+//    }
+//
+//    @GetMapping("/main/authors")
+//    public String mainAuthors(){
+//        return "authors";
+//    }
 }
