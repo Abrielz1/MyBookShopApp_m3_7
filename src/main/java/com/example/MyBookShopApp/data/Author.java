@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Table(name = "authors")
-public class Author {
+public class Author implements Comparable<Author> {
 
     private Integer id;
 
@@ -18,5 +18,11 @@ public class Author {
     @Column(name = "biography")
     private String biography;
 
- //   private List<Book> books;
+    @Override
+    public int compareTo(Author o) {
+        return this.getNameAuthor().compareTo(o.getNameAuthor());
+    }
+
+    //   private List<Book> books;
+
 }
