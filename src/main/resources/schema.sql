@@ -15,7 +15,7 @@ CREATE TABLE books
 CREATE TABLE authors
 (
     id          BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name_author VARCHAR(320) NOT NULL UNIQUE,
+    name_author VARCHAR(320) PRIMARY KEY NOT NULL UNIQUE,
     biography   TEXT,
     book_id     BIGINT       NOT NULL,
     CONSTRAINT fk_book_id
