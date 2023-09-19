@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -36,6 +37,9 @@ public class BookService {
        // TODO разобраться, как собрать списое книг аффторя
         return author;
     });
+
+        Collections.sort(authors);
+
         return new ArrayList<>(authors);
     }
 }

@@ -1,11 +1,18 @@
 package com.example.MyBookShopApp.controllers;
 
+import com.example.MyBookShopApp.data.Author;
 import com.example.MyBookShopApp.data.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/bookshop")
@@ -21,18 +28,26 @@ public class MainPageController {
     }
 
     @GetMapping("/genres")
-    public String authorsPage(){
+    public String mainsGenres(){
         return "/genres/index";
     }
 
-//    @GetMapping("/genres")
-//    public String mainGenres() {
-//        return "/genres/index";
-//    }
 
     @GetMapping("/authors")
     public String mainAuthors(Model model){
-        model.addAttribute("authorData", bookService.getAuthorData());
-        return "authors";
+        List<Author> authors = bookService.getAuthorData();
+        Map<Character, List<Author>> authorsData = new HashMap<>();
+        for (Author i : authors) {
+            char firstLetter = Character.toLowerCase(i.getNameAuthor().charAt(0));
+            if (authorsData.get(firstLetter) == null) {
+                authorsData.put(firstLetter, new ArrayList<>(List.of(i)));
+            } else {
+                List<Author> dump = authorsData.get(firstLetter);
+                dump.add(i);
+                authorsData.put(firstLetter, dump);
+            }
+        }
+        model.addAttribute("authorsData", authorsData);
+        return "/authors/index";
     }
 }
