@@ -32,8 +32,8 @@ public class BookService {
         Author author = new Author();
         author.setId(rs.getInt("id"));
         author.setNameAuthor(rs.getString("name_author"));
-        author.setBiography(rs.getString("title"));
-       // author.setBooks(rs.getArray(List<Book>));
+        author.setBiography(rs.getString("biography"));
+       // TODO разобраться, как собрать списое книг аффторя
         return author;
     });
         return new ArrayList<>(authors);
