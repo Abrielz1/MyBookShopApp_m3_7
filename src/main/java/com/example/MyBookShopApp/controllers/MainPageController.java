@@ -21,11 +21,11 @@ public class MainPageController {
         return "index";
     }
 
-//    @GetMapping("/main/genres")
+//    @GetMapping("/genres")
 //    public String mainGenres() {
 //        return "genres";
 //    }
-//
+
 //    @GetMapping("/main/authors")
 //    public String mainAuthors(){
 //        return "authors";
