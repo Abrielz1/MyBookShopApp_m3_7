@@ -1,6 +1,7 @@
 package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.data.Author;
+import com.example.MyBookShopApp.data.Book;
 import com.example.MyBookShopApp.data.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -54,6 +55,11 @@ public class MainPageController {
 
     @GetMapping("/authors/slug")
     public String mainBooksByAuthor(@RequestParam(value = "authorId") Integer authorId, Model model) {
+
+        Author author = bookService.getAuthorById(authorId);
+        List<Book> books = bookService.getAllBookByAuthor(authorId);
+        model.addAttribute("author", author);
+        model.addAttribute("books", books);
 
         return "/authors/slug";
     }
