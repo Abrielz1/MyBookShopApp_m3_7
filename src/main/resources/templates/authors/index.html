@@ -108,7 +108,7 @@
               <h2 class="Authors-title" th:id="${data.key}" th:text="${data.key}">  </h2>
                 <div class="Authors-letter">
                   <div class="Authors-item" th:each="author : ${data.value}">
-                    <a th:href="@{'/bookshop/authors/slug?authorId=' + ${author.id}}" th:text="@{${author.nameAuthor}}">
+                    <a th:href="@{'/bookshop/authors/slug?authorId=' + ${author.id}}" th:text="@{${author.nameAuthor}}"/>
                   </div>
                 </div>
               </div>
