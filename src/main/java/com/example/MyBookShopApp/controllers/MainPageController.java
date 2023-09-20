@@ -5,16 +5,17 @@ import com.example.MyBookShopApp.data.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
+@Validated
 @RequestMapping("/bookshop")
 @RequiredArgsConstructor
 public class MainPageController {
@@ -49,5 +50,11 @@ public class MainPageController {
         }
         model.addAttribute("authorsData", authorsData);
         return "/authors/index";
+    }
+
+    @GetMapping("/authors/slug")
+    public String mainBooksByAuthor(@RequestParam(value = "authorId") Integer authorId, Model model) {
+
+        return "/authors/slug";
     }
 }
