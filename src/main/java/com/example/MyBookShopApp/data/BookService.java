@@ -60,7 +60,7 @@ public class BookService {
         return new ArrayList<>(books);
     }
 
-    public Author getAuthorById(Integer authorId) {
+    public Author getAuthorById(Integer authorId) { //if(authorRows.next()) поленился прикручивать
         String sql = "SELECT * FROM author WHERE id = ?";
         Author author = new Author();
         SqlRowSet authorRows  = jdbcTemplate.queryForRowSet(sql, authorId);
