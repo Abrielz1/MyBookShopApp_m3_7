@@ -57,7 +57,9 @@ public class MainPageController {
     public String mainBooksByAuthor(@RequestParam(value = "authorId") Integer authorId, Model model) {
 
         Author author = bookService.getAuthorById(authorId);
+       // System.out.println("Афтырь" + author);
         List<Book> books = bookService.getAllBookByAuthor(authorId);
+        System.out.println(books);
         model.addAttribute("author", author);
         model.addAttribute("books", books);
 

@@ -1,0 +1,1 @@
+insert into authors(id, name_author, biography, book_id) values (1, 'Яковлева Алена', 'sothing like ', 1);

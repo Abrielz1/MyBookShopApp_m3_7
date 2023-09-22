@@ -37,7 +37,6 @@ public class BookService {
         author.setId(rs.getInt("id"));
         author.setNameAuthor(rs.getString("name_author"));
         author.setBiography(rs.getString("biography"));
-       // TODO разобраться, как собрать списое книг аффторя
         return author;
     });
 
@@ -47,7 +46,7 @@ public class BookService {
     }
 
     public List<Book> getAllBookByAuthor(Integer authorId) {
-        List<Book> books = jdbcTemplate.query("SELECT * FROM books WHERE author_id = ?", new Object[]{authorId}, (ResultSet rs, int rownum)->{
+        List<Book> books = jdbcTemplate.query("SELECT * FROM books where author_id like ?", new Object[]{authorId}, (ResultSet rs, int rownum)->{
             Book book = new Book();
             book.setId(rs.getInt("id"));
             book.setAuthorId(rs.getInt("author_id"));
@@ -61,17 +60,17 @@ public class BookService {
     }
 
     public Author getAuthorById(Integer authorId) { //if(authorRows.next()) поленился прикручивать
-        String sql = "SELECT * FROM author WHERE id = ?";
-        Author author = new Author();
-        SqlRowSet authorRows  = jdbcTemplate.queryForRowSet(sql, authorId);
-        return jdbcTemplate.queryForObject(sql, this::makeAuthor);
+
+        String sql = "SELECT * FROM authors where id = ?";
+
+        return jdbcTemplate.queryForObject(sql, this::makeAuthor, authorId);
     }
 
     private Author makeAuthor(ResultSet resultSet, int rowNum) throws SQLException {
         int id = resultSet.getInt("id");
-        String nameAuthor = resultSet.getString("nameAuthor");
+        String nameAuthor = resultSet.getString("name_author");
         String biography = resultSet.getString("biography");
-
+      //  System.out.println(id + nameAuthor + biography);
         return new Author(id, nameAuthor, biography);
     }
 }
