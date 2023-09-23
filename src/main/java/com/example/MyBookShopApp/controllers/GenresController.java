@@ -11,13 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @AllArgsConstructor
 @RequestMapping("/bookshop")
-public class MainPageController {
+public class GenresController {
 
     private final BookService bookService;
 
-    @GetMapping("/main")
-    public String mainPage(Model model){
-        model.addAttribute("bookData", bookService.getBooksData());
-        return "index";
+    @GetMapping("/genres")
+    public String genresPage(Model model){
+        return "genres/index";
+    }
+
+    @GetMapping("/genres/slug")
+    public String genresPageSlug(Model model){
+        return "genres/slug";
     }
 }
