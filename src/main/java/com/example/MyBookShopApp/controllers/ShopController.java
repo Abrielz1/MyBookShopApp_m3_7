@@ -27,4 +27,9 @@ public class ShopController {
     public String contactsPage() {
         return "/contacts";
     }
+
+    @GetMapping("/news") //заглушка страницы не нашёл
+    public String newsPage() {
+        return "index";
+    }
 }

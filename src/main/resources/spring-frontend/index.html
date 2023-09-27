@@ -15,6 +15,18 @@
   <link rel="stylesheet" href="/assets/css/extra.min.css?v=64223515">
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <script defer src="/assets/js/scripts.min.js?v=64223515"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#locales').change(function () {
+        let selectedOption = $('#locales').val();
+        if (selectedOption != '') {
+          window.location.replace('?lang=' + selectedOption);
+        }
+      })
+    })
+  </script>
+
 </head>
 
 <body class="Site">
@@ -32,13 +44,13 @@
                 <div class="Card"><a class="Card-picture" href="/books/slug.html">
                   <img src="/assets/img/content/main/card.jpg" alt="card.jpg"/></a>
                   <div class="Card-content">
-                    <strong class="Card-title" th:text="${book.title}"><a href="/books/slug.html">Техника</a>
+                    <strong class="Card-title" th:text="${book.title}"><a href="/books/slug.html"></a>
                     </strong>
                     <div class="Card-description" th:text="${allAuthorsList.get(book.getAuthorId()).getFirstName() +
-                    ' ' + allAuthorsList.get(book.getAuthorId()).getFirstName()}">Кондратенко Валерий Петрович
+                    ' ' + allAuthorsList.get(book.getAuthorId()).getFirstName()}">
                     </div>
-                    <div class="Card-cost"><span class="Card-priceOld" th:text="${book.priceOld}">₽300.00</span>
-                      <span class="Card-price" th:text="${book.price}">₽190.00</span>
+                    <div class="Card-cost"><span class="Card-priceOld" th:text="${book.priceOld}"></span>
+                      <span class="Card-price" th:text="${book.price}"></span>
                     </div>
                   </div>
                 </div>
