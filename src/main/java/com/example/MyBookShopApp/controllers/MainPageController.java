@@ -1,23 +1,36 @@
 package com.example.MyBookShopApp.controllers;
 
+import com.example.MyBookShopApp.entity.Author;
+import com.example.MyBookShopApp.entity.Book;
+import com.example.MyBookShopApp.service.AuthorService;
 import com.example.MyBookShopApp.service.BookService;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import java.util.List;
 
 @Controller
-@AllArgsConstructor
-@RequestMapping("/bookshop")
+@RequiredArgsConstructor
 public class MainPageController {
 
     private final BookService bookService;
 
-    @GetMapping("/main")
-    public String mainPage(Model model){
-        model.addAttribute("bookData", bookService.getBooksData());
+    private final AuthorService authorService;
+
+    @ModelAttribute("allAuthorsList")
+    public List<Author> allAuthorsList() {
+        return authorService.getAuthorsData();
+    }
+
+    @ModelAttribute("recommendedBooks")
+    public List<Book> recommendedBooks() {
+        return bookService.getBooksData();
+    }
+
+
+    @GetMapping("/")
+    public String mainPage(){
         return "index";
     }
 }

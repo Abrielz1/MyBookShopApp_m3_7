@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div class="Header-menu" th:fragment="head">
+  <div class="wrap">
+    <nav class="menuModal" id="navigate">
+      <ul class="menu menu_main">
+        <li class="menu-item menu-item_ACTIVE"><a class="menu-link"
+                                                  th:text="#{topbar.main}" th:href="@{/}"></a>
+        </li>
+        <li class="menu-item"><a class="menu-link" href="genres.html"
+                                 th:text="#{topbar.genres}" th:href="@{/genres}"></a>
+        </li>
+        <li class="menu-item"><a class="menu-link" href="nove.html"
+                                 th:text="#{topbar.news}">Новинки</a>
+        </li>
+        <li class="menu-item"><a class="menu-link" href="popular.html"
+                                 th:text="#{topbar.popular}">Популярное</a>
+        </li>
+        <li class="menu-item"><a class="menu-link" href="authors.html"
+                                 th:text="#{topbar.authors}" th:href="@{/authors}">Авторы</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+</body>
+</html>

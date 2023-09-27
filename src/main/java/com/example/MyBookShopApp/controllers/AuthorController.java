@@ -4,38 +4,36 @@ import com.example.MyBookShopApp.entity.Author;
 import com.example.MyBookShopApp.entity.Book;
 import com.example.MyBookShopApp.service.AuthorService;
 import com.example.MyBookShopApp.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/bookshop")
+@RequiredArgsConstructor()
+
 public class AuthorController {
 
     private final AuthorService authorService;
+
     private final BookService bookService;
 
-    @Autowired
-    public AuthorController(AuthorService authorService, BookService bookService) {
-        this.authorService = authorService;
-        this.bookService = bookService;
-    }
 
-    @GetMapping("/authors")
-    public String authorsPage(Model model) {
+    @ModelAttribute("authorsData")
+    public Map<Character,List<Author>> authorsCharMap() {
+
         List<Author> authors = authorService.getAuthorsData();
-        Collections.sort(authors, Comparator.comparing(Author::getLastName));
+
+        authors.sort(Comparator.comparing(Author::getLastName));
+
         Map<Character, List<Author>> authorsData = new HashMap<>();
         for (Author author: authors) {
             Character letter = Character.toLowerCase(author.getLastName().charAt(0));
@@ -47,9 +45,16 @@ public class AuthorController {
                 authorsData.put(letter, groupAuthors);
             }
         }
-        model.addAttribute("authorsData", authorsData);
+
+        return authorsData;
+    }
+
+
+    @GetMapping("/authors")
+    public String authorsPage() {
         return "authors/index";
     }
+
 
     @GetMapping("/authors/slug")
     public String authorsPageSlug(@RequestParam(value = "authorId") Integer authorId, Model model) {
@@ -59,4 +64,21 @@ public class AuthorController {
         model.addAttribute("books", books);
         return "authors/slug";
     }
+
+
+//    @ModelAttribute("authorsModel")
+//    public List<Book> authorsPageModel(@RequestParam(value = "authorId") Integer authorId) {
+//       // Map<Author, List<Book>> authorsModel = new HashMap<>();
+//        Author author =  authorService.getAuthor(authorId);
+//       // List<Book> authorsModel = bookService.getBooksByAuthor(authorId);
+//        //authorsModel.put(author, books);
+//
+//        return bookService.getBooksByAuthor(authorId);
+//    }
+//
+//    @GetMapping("/authors/slug")
+//    public String authorsPageSlug() {
+//
+//        return "authors/slug";
+//    }
 }
