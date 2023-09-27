@@ -8,14 +8,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class ShopController {
 
-
     @GetMapping("/documents")
     public String documentsPage() {
         return "/documents/index";
     }
 
-    // Документы — /documents/index.html
-    // О компании — /about.html
-    // Помощь — /faq.html
-    // Контакты — /contacts.html
+    @GetMapping("/about")
+        public String aboutPage() {
+            return "/about";
+        }
+
+    @GetMapping("/faq")
+        public String faqPage() {
+            return "/faq";
+    }
+
+    @GetMapping("/contacts")
+    public String contactsPage() {
+        return "/contacts";
+    }
 }
