@@ -22,15 +22,18 @@
           <li class="menu-item"><a class="menu-link" href="authors.html"
                                    th:text="#{topbar.authors}" th:href="@{/authors}">Авторы</a>
           </li>
+
+          <p>
+            <span>Выбор языка</span>
+            <select id="locales">
+              <option value=" "></option>
+              <option value="en">English</option>
+              <option value="ru">Русский</option>
+            </select>
+          </p>
+
         </ul>
-        <p>
-          <span>Выбор языка</span>
-          <select id="locales">
-            <option value=" "></option>
-            <option value="en">English</option>
-            <option value="ru">Русский</option>
-          </select>
-        </p>
+
       </div>
       <div class="row-block">
         <ul class="menu menu_vt Footer-menu">
