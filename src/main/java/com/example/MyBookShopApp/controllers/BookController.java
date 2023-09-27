@@ -1,10 +1,15 @@
 package com.example.MyBookShopApp.controllers;
 
+import com.example.MyBookShopApp.entity.Author;
+import com.example.MyBookShopApp.entity.Book;
 import com.example.MyBookShopApp.service.AuthorService;
 import com.example.MyBookShopApp.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -13,6 +18,16 @@ public class BookController {
     private final BookService bookService;
 
     private final AuthorService authorService;
+
+    @ModelAttribute("booksList")
+    public List<Book> bookList() {
+        return bookService.getBooksData();
+    }
+
+    @ModelAttribute("authorsList")
+    public List<Author> authorsList() {
+        return authorService.getAuthorsData();
+    }
 
     @GetMapping("/recent")
     public String recentPage() {
