@@ -24,15 +24,9 @@ public class TempController {
     // Новинки — файл /books/recent.html
     // Популярное — /books/popular.html
     // Отложенное — /postponed.html
-    // Авторы — /authors/index.html \/
-    // Книги по жанру — /genres/index.html \/
     // Корзина — /cart.html
-    // Войти — /signin.html
     // Поиск — /search/index.html
-    // Документы — /documents/index.html
-    // О компании — /about.html
-    // Помощь — /faq.html
-    // Контакты — /contacts.html
+
 
     private final AuthorService authorService;
 
