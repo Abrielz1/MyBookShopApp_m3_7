@@ -57,8 +57,8 @@ public class AuthorController {
 
 
     @GetMapping("/authors/slug")
-    public String authorsPageSlug(@RequestParam(value = "authorId") Integer authorId, Model model) {
-        Author author =  authorService.getAuthor(authorId);
+    public String authorsPageSlug(@RequestParam(value = "authorId") Long authorId, Model model) {
+        Author author =  authorService.getAuthor(authorId).get();
         List<Book> books = bookService.getBooksByAuthor(authorId);
         model.addAttribute("author", author);
         model.addAttribute("books", books);

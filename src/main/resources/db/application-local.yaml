@@ -19,7 +19,7 @@ spring:
     password: root
   liquibase:
     default-schema: public
-    change-log: db/changelog/db.changelog-master.yaml
+    change-log: ../../../db/changelog/db.changelog-master.yaml
     enabled: true
     drop-first: false
   application:

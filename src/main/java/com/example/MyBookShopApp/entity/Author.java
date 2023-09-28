@@ -12,20 +12,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
 @Setter
 @Entity
-@Builder
+@Builder(toBuilder = true)
 @ToString
+@Table(name = "AUTHORS")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -36,6 +42,10 @@ public class Author {
     private String patronym;
 
     private String biography;
+
+    @OneToMany
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    private List<Book> booksList = new ArrayList<>();
 
     @Override
     public final boolean equals(Object o) {
