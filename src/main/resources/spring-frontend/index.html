@@ -46,9 +46,9 @@
                   <div class="Card-content">
                     <strong class="Card-title" th:text="${book.title}"><a href="/books/slug.html"></a>
                     </strong>
-                    <div class="Card-description" th:text="${allAuthorsList.get(book.getAuthorId()).getFirstName() +
-                    ' ' + allAuthorsList.get(book.getAuthorId()).getFirstName()}">
+                    <div class="Card-description" th:text="${book.author.getFirstName() + ' ' + book.author.getPatronym() + ' ' + book.author.getLastName()}">
                     </div>
+
                     <div class="Card-cost"><span class="Card-priceOld" th:text="${book.priceOld}"></span>
                       <span class="Card-price" th:text="${book.price}"></span>
                     </div>

@@ -19,6 +19,6 @@ public class AuthorService {
     }
 
     public Optional<Author> getAuthor(Long authorId) {
-        return repository.findById(authorId);
+        return repository.findAuthorById(authorId);
     }
 }

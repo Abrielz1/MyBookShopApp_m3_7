@@ -7,5 +7,5 @@ import java.util.Optional;
 
 @Repository
 public interface AuthorRepo extends JpaRepository<Author, Long> {
-    Optional<Author> findById(Long authorID);
+    Optional<Author> findAuthorById(Long authorID);
 }

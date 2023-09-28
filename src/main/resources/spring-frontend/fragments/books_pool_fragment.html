@@ -11,7 +11,7 @@
             <strong class="Card-title">
                 <a href="#" th:text="${book.title}"></a>
             </strong>
-            <div class="Card-description" th:text="${authorsList.get(book.authorId).getFirstName() + ' ' + authorsList.get(book.authorId).getFirstName()}"></div>
+            <div class="Card-description" th:text="${book.author.getFirstName() + ' ' + book.author.getPatronym() + ' ' + book.author.getLastName()}"></div>
             <div class="Card-cost">
                 <span class="Card-priceOld">₽300.00</span>
                 <span class="Card-price">₽190.00</span>
