@@ -1,6 +1,5 @@
 package com.example.MyBookShopApp.service;
 
-import com.example.MyBookShopApp.entity.Author;
 import com.example.MyBookShopApp.entity.Book;
 import com.example.MyBookShopApp.exceptions.ObjectNotFoundException;
 import com.example.MyBookShopApp.repository.AuthorRepo;
@@ -22,7 +21,8 @@ public class BookService {
     }
 
     public List<Book> getBooksByAuthor(Long authorId) {
-        Author author = authorRepo.findById(authorId).orElseThrow(() ->
+
+        authorRepo.findById(authorId).orElseThrow(() ->
                 new ObjectNotFoundException("Author not found!"));
 
         return repository.findAllByAuthorId(authorId);
