@@ -17,6 +17,10 @@ public class AuthorService {
         return repository.findAll();
     }
 
+    public List<Author> findAllAndSortByLastName() {
+        return repository.findAllAndSortByLastName();
+    }
+
     public Optional<Author> getAuthor(Long authorId) {
         return repository.findAuthorById(authorId);
     }

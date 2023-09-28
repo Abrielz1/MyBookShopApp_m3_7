@@ -30,9 +30,7 @@ public class AuthorController {
     @ModelAttribute("authorsData")
     public Map<Character,List<Author>> authorsCharMap() {
 
-        List<Author> authors = authorService.getAuthorsData();
-
-        authors.sort(Comparator.comparing(Author::getLastName));
+        List<Author> authors = authorService.findAllAndSortByLastName();
 
         Map<Character, List<Author>> authorsData = new HashMap<>();
         for (Author author: authors) {
