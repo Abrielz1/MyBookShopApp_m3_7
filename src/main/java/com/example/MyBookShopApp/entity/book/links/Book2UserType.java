@@ -1,4 +1,4 @@
-package com.example.MyBookShopApp.entity;
+package com.example.MyBookShopApp.entity.book.links;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,9 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PositiveOrZero;
 import java.util.Objects;
 
 @Getter
@@ -23,29 +20,20 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-//@Entity
-//@Table(name = "USERS")
 @Builder(toBuilder = true)
-public class User {
+@Entity
+@Table(name = "book2user_type")
+public class Book2UserType {
 
- //   @Id
-  // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @PositiveOrZero
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-  //  @Column(name = "user_name")
-    private String userName;
+    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
+    private String code;
 
-    @NotBlank(message = "Отсутствует телефон")
- //   @Column(name = "phone")
-    private String phone;
-
-    @NotBlank(message = "Отсутствует email")
-    @Email(message = "Некорректный email")
-    private String email;
-
-    private Boolean isApproved;
+    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
+    private String name;
 
     @Override
     public final boolean equals(Object o) {
@@ -54,8 +42,8 @@ public class User {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        User user = (User) o;
-        return getId() != null && Objects.equals(getId(), user.getId());
+        Book2UserType that = (Book2UserType) o;
+        return id != null && Objects.equals(id, that.id);
     }
 
     @Override

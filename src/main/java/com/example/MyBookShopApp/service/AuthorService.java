@@ -1,6 +1,6 @@
 package com.example.MyBookShopApp.service;
 
-import com.example.MyBookShopApp.entity.Author;
+import com.example.MyBookShopApp.entity.book.entity.Author;
 import com.example.MyBookShopApp.repository.AuthorRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

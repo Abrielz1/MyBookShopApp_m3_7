@@ -1,11 +1,10 @@
-package com.example.MyBookShopApp.entity;
+package com.example.MyBookShopApp.entity.book.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

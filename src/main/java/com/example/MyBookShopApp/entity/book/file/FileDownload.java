@@ -1,7 +1,6 @@
-package com.example.MyBookShopApp.entity;
+package com.example.MyBookShopApp.entity.book.file;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,40 +11,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Getter
 @Setter
-@Entity
-@Builder(toBuilder = true)
 @ToString
-@Table(name = "AUTHORS")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Author {
+@Entity
+@Table(name = "file_download")
+public class FileDownload {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(columnDefinition = "INT NOT NULL")
+    private Long userId;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(columnDefinition = "INT NOT NULL")
+    private Long bookId;
 
-    private String patronym;
-
-    private String biography;
-
-    @OneToMany
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
-    private List<Book> booksList = new ArrayList<>();
+    @Column(columnDefinition = "INT NOT NULL DEFAULT 1")
+    private Long count;
 
     @Override
     public final boolean equals(Object o) {
@@ -54,8 +43,8 @@ public class Author {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Author author = (Author) o;
-        return getId() != null && Objects.equals(getId(), author.getId());
+        FileDownload that = (FileDownload) o;
+        return getId() != null && Objects.equals(getId(), that.getId());
     }
 
     @Override
@@ -63,4 +52,3 @@ public class Author {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
 }
-

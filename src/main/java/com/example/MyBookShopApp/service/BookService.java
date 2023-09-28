@@ -1,6 +1,6 @@
 package com.example.MyBookShopApp.service;
 
-import com.example.MyBookShopApp.entity.Book;
+import com.example.MyBookShopApp.entity.book.entity.Book;
 import com.example.MyBookShopApp.exceptions.ObjectNotFoundException;
 import com.example.MyBookShopApp.repository.AuthorRepo;
 import com.example.MyBookShopApp.repository.BookRepo;
