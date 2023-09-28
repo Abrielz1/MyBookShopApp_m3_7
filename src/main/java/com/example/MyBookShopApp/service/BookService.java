@@ -22,8 +22,9 @@ public class BookService {
     }
 
     public List<Book> getBooksByAuthor(Long authorId) {
-        Author author = authorRepo.findById(authorId).orElseThrow(()->
+        Author author = authorRepo.findById(authorId).orElseThrow(() ->
                 new ObjectNotFoundException("Author not found!"));
+
         return repository.findAllByAuthorId(authorId);
     }
 }
