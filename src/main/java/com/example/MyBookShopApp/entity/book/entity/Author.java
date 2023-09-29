@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 import org.hibernate.proxy.HibernateProxy;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,7 +41,7 @@ public class Author {
     private String lastName;
 
     private String patronym;
-
+    @Type(type = "org.hibernate.type.TextType")
     private String biography;
 
     @OneToMany
