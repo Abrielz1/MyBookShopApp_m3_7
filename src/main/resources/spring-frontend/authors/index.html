@@ -59,7 +59,7 @@
                   <div class="Authors-item" th:each="author: ${data.value}">
 <!--                    <a th:text="${author.lastName + ' ' + author.firstName}"></a>-->
                     <a th:href="@{'/authors/slug?authorId=' + ${author.id}}"
-                       th:text="${author.lastName + ' ' + author.firstName}"></a>
+                       th:text="${author.lastName + ' ' + author.firstName + ' ' + author.getPatronym()}"></a>
                   </div>
                 </div>
               </div>
