@@ -23,7 +23,7 @@ import java.util.Objects;
 @Builder(toBuilder = true)
 @Entity
 @Table(name = "book_file")
-public class book_file {
+public class BookFile {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +43,7 @@ public class book_file {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        book_file bookFile = (book_file) o;
+        BookFile bookFile = (BookFile) o;
         return getId() != null && Objects.equals(getId(), bookFile.getId());
     }
 
