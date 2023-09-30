@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ import java.util.Objects;
 @Setter
 @Entity
 @Builder(toBuilder = true)
-//@ToString
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "BOOKS")
@@ -35,6 +36,7 @@ public class Book {
 //    @Column(name = "author_id")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id", referencedColumnName = "id")
+    @ToString.Exclude
     private Author author;
 
     private String title;
