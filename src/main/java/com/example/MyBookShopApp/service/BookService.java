@@ -1,52 +1,30 @@
 package com.example.MyBookShopApp.service;
 
-import com.example.MyBookShopApp.entity.Book;
-import lombok.AllArgsConstructor;
-import org.springframework.jdbc.core.JdbcTemplate;
+import com.example.MyBookShopApp.entity.book.entity.Book;
+import com.example.MyBookShopApp.exceptions.ObjectNotFoundException;
+import com.example.MyBookShopApp.repository.AuthorRepo;
+import com.example.MyBookShopApp.repository.BookRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BookService {
-    private JdbcTemplate jdbcTemplate;
 
+    private final AuthorRepo authorRepo;
 
-    public List<Book> getBooksData(){
+    private final BookRepo repository;
 
-        List<Book> books = jdbcTemplate.query("SELECT * FROM books", (ResultSet rs, int rownum)->{
-
-            Book book = new Book();
-
-            book.setId(rs.getInt("id"));
-            book.setAuthorId(rs.getInt("author_id"));
-            book.setTitle(rs.getString("title"));
-            book.setPriceOld(rs.getInt("price_old"));
-            book.setPrice(rs.getInt("price"));
-
-            return book;
-        });
-
-        return new ArrayList<>(books);
+    public List<Book> getBooksData() {
+        return repository.findAll();
     }
 
-    public List<Book> getBooksByAuthor(Integer authorId){
+    public List<Book> getBooksByAuthor(Long authorId) {
 
-        List<Book> books = jdbcTemplate.query("SELECT * FROM books WHERE author_id = ?", new Object[]{authorId}, (ResultSet rs, int rownum)->{
+        authorRepo.findById(authorId).orElseThrow(() ->
+                new ObjectNotFoundException("Author not found!"));
 
-            Book book = new Book();
-
-            book.setId(rs.getInt("id"));
-            book.setAuthorId(rs.getInt("author_id"));
-            book.setTitle(rs.getString("title"));
-            book.setPriceOld(rs.getInt("price_old"));
-            book.setPrice(rs.getInt("price"));
-
-            return book;
-        });
-
-        return new ArrayList<>(books);
+        return repository.findAllByAuthorId(authorId);
     }
 }

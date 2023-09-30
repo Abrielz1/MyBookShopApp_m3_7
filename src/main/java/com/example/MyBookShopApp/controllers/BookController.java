@@ -1,7 +1,7 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.entity.Author;
-import com.example.MyBookShopApp.entity.Book;
+import com.example.MyBookShopApp.entity.book.entity.Author;
+import com.example.MyBookShopApp.entity.book.entity.Book;
 import com.example.MyBookShopApp.service.AuthorService;
 import com.example.MyBookShopApp.service.BookService;
 import lombok.RequiredArgsConstructor;

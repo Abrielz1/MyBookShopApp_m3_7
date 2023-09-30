@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="/assets/css/fonts.min.css?v=64223515">
   <link rel="stylesheet" href="/assets/css/basic.min.css?v=64223515">
   <link rel="stylesheet" href="/assets/css/extra.min.css?v=64223515">
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <script defer src="/assets/js/scripts.min.js?v=64223515"></script>
+  <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <script defer src="assets/js/scripts.min.js?v=64223515"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function () {
@@ -46,9 +46,9 @@
                   <div class="Card-content">
                     <strong class="Card-title" th:text="${book.title}"><a href="/books/slug.html"></a>
                     </strong>
-                    <div class="Card-description" th:text="${allAuthorsList.get(book.getAuthorId()).getFirstName() +
-                    ' ' + allAuthorsList.get(book.getAuthorId()).getFirstName()}">
+                    <div class="Card-description" th:text="${book.author.getFirstName() + ' ' + book.author.getPatronym() + ' ' + book.author.getLastName()}">
                     </div>
+
                     <div class="Card-cost"><span class="Card-priceOld" th:text="${book.priceOld}"></span>
                       <span class="Card-price" th:text="${book.price}"></span>
                     </div>

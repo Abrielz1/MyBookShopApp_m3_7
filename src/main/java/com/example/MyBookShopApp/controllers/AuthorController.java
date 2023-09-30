@@ -1,7 +1,7 @@
 package com.example.MyBookShopApp.controllers;
 
-import com.example.MyBookShopApp.entity.Author;
-import com.example.MyBookShopApp.entity.Book;
+import com.example.MyBookShopApp.entity.book.entity.Author;
+import com.example.MyBookShopApp.entity.book.entity.Book;
 import com.example.MyBookShopApp.service.AuthorService;
 import com.example.MyBookShopApp.service.BookService;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,9 +29,7 @@ public class AuthorController {
     @ModelAttribute("authorsData")
     public Map<Character,List<Author>> authorsCharMap() {
 
-        List<Author> authors = authorService.getAuthorsData();
-
-        authors.sort(Comparator.comparing(Author::getLastName));
+        List<Author> authors = authorService.findAllAndSortByLastName();
 
         Map<Character, List<Author>> authorsData = new HashMap<>();
         for (Author author: authors) {
@@ -57,8 +54,8 @@ public class AuthorController {
 
 
     @GetMapping("/authors/slug")
-    public String authorsPageSlug(@RequestParam(value = "authorId") Integer authorId, Model model) {
-        Author author =  authorService.getAuthor(authorId);
+    public String authorsPageSlug(@RequestParam(value = "authorId") Long authorId, Model model) {
+        Author author =  authorService.getAuthor(authorId).get();
         List<Book> books = bookService.getBooksByAuthor(authorId);
         model.addAttribute("author", author);
         model.addAttribute("books", books);
