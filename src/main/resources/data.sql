@@ -1131,6 +1131,6 @@ insert into books (id, price, price_old, title, author_id) values (1016, 1945, 1
 insert into books (id, price, price_old, title, author_id) values (1017, 1156, 891, 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.', 106);
 insert into books (id, price, price_old, title, author_id) values (1018, 1050, 1468, 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', 106);
 insert into books (id, price, price_old, title, author_id) values (1019, 879, 1119, 'In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.', 103);
-insert into books (id, price, price_old, title, author_id) values (1012, 668, 680, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', 107);
+insert into books (id, price, price_old, title, author_id) values (1020, 668, 680, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', 107);
 
 

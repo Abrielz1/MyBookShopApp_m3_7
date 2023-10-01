@@ -33,4 +33,9 @@ public class MainPageController {
     public String mainPage(){
         return "index";
     }
+
+    //TODO:
+    // Подключить постраничный вывод для лент «Новинки»
+    // Популярное» на главной странице
+
 }
