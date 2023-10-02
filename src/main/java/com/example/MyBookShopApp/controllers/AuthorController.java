@@ -7,6 +7,7 @@ import com.example.MyBookShopApp.service.BookService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,14 +23,18 @@ import java.util.Map;
 
 @Api(description = "authors data")
 @Controller
-@RequiredArgsConstructor()
-
+//@RequiredArgsConstructor()
 public class AuthorController {
 
     private final AuthorService authorService;
 
     private final BookService bookService;
 
+    @Autowired
+    public AuthorController(AuthorService authorService, BookService bookService) {
+        this.authorService = authorService;
+        this.bookService = bookService;
+    }
 
     @ApiOperation("method for acquiring list of all authors," +
             " sorted and ordered by first letter their last name")
