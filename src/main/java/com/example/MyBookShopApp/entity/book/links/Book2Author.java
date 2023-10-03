@@ -32,13 +32,19 @@ public class Book2Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "book_id", columnDefinition = "INT NOT NULL")
-    private Book book;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "book_id", columnDefinition = "INT NOT NULL")
+//    private Book book;
+//
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "author_id", columnDefinition = "INT NOT NULL")
+//    private Author author;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "author_id", columnDefinition = "INT NOT NULL")
-    private Author author;
+    @Column(name = "book_id", columnDefinition = "INT NOT NULL")
+    private Long bookId;
+
+    @Column(name = "author_id", columnDefinition = "INT NOT NULL")
+    private Long authorId;
 
     @Column(name = "sort_index", columnDefinition = "INT NOT NULL  DEFAULT 0")
     private int sortIndex;
