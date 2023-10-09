@@ -48,6 +48,7 @@ public class MainPageController {
     @ResponseBody
     public BooksPageDto getBooksPage(@RequestParam("offset") Integer offset,
                                      @RequestParam("limit") Integer limit) {
+        System.out.println(new BooksPageDto(bookService.getPageOfRecommendedBooks(offset, limit).getContent()));
         return new BooksPageDto(bookService.getPageOfRecommendedBooks(offset, limit).getContent());
     }
 
@@ -67,39 +68,4 @@ public class MainPageController {
                                           @PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto) {
         return new BooksPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit).getContent());
     }
-
-//    @ModelAttribute("booksList")
-//    public List<Book> bookList() {
-//        return bookService.getBooksData();
-//    }
-//
-//    @ModelAttribute("authorsList")
-//    public List<Author> authorsList() {
-//        return authorService.getAuthorsData();
-//    }
-//
-//    @GetMapping("/recent")
-//    public String recentPage() {
-//        return "/books/recent";
-//    }
-//
-//    @GetMapping("/popular")
-//    public String popularPage() {
-//        return "/books/popular";
-//    }
-//
-//    @GetMapping("/postponed")
-//    public String postponedPage() {
-//        return "/postponed";
-//    }
-//
-//    @GetMapping("/cart")
-//    public String cartPage() {
-//        return "/cart";
-//    }
-//
-//    @GetMapping("/search")
-//    public String searchPage() {
-//        return "/search/index";
-//    }
 }
