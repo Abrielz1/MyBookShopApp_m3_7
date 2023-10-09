@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changelog-001.xml
+  - include:
+      file: data/authors.sql
+  - include:
+      file: data/books.sql
+  - include:
+      file: data/genre.sql
