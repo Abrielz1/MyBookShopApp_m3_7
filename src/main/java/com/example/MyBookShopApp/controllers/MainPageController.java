@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -31,9 +33,18 @@ public class MainPageController {
 
     @ModelAttribute("recommendedBooks")
     public List<Book> recommendedBooks() {
-        return bookService.getBooksData();
+        return bookService.getPageOfRecommendedBooks(0, 6).getContent();
     }
 
+    @ModelAttribute("searchWordDto")
+    public SearchWordDto searchWordDto() {
+        return new SearchWordDto();
+    }
+
+    @ModelAttribute("searchResults")
+    public List<Book> searchResults() {
+        return new ArrayList<>();
+    }
 
     @GetMapping("/")
     public String mainPage(){
@@ -48,7 +59,7 @@ public class MainPageController {
     @ResponseBody
     public BooksPageDto getBooksPage(@RequestParam("offset") Integer offset,
                                      @RequestParam("limit") Integer limit) {
-        System.out.println(new BooksPageDto(bookService.getPageOfRecommendedBooks(offset, limit).getContent()));
+
         return new BooksPageDto(bookService.getPageOfRecommendedBooks(offset, limit).getContent());
     }
 
