@@ -19,10 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.sql.Date;
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -46,7 +43,7 @@ public class Book {
     @Column(name = "is_bestseller")
     @ApiModelProperty("if isBestseller = 1 so the book is considered to be bestseller and if 0 the book is not a " +
             "bestseller")
-    private Integer isBesteller;
+    private Integer isBestseller;
 
     private String slug; // мнемонический идентификатор книги,
     // который будет отображаться в ссылке на его страницу

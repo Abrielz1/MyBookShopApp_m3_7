@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import java.util.List;
 
 @Controller
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class BookController {
 
     private final BookService bookService;
 
     private final AuthorService authorService;
 
-    @Autowired
-    public BookController(BookService bookService, AuthorService authorService) {
-        this.bookService = bookService;
-        this.authorService = authorService;
-    }
+//    @Autowired
+//    public BookController(BookService bookService, AuthorService authorService) {
+//        this.bookService = bookService;
+//        this.authorService = authorService;
+//    }
 
     @ModelAttribute("booksList")
     public List<Book> bookList() {

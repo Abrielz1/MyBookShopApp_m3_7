@@ -30,7 +30,7 @@ public class AuthorController {
 
     private final BookService bookService;
 
-    @Autowired
+    @Autowired //снести
     public AuthorController(AuthorService authorService, BookService bookService) {
         this.authorService = authorService;
         this.bookService = bookService;

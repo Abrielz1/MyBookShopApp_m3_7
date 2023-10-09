@@ -47,14 +47,15 @@ public class BookService {
     }
 
     public List<Book> getBooksWithPriceBetween(Integer min, Integer max){
-        return repository.findBooksByPriceOldBetween(min, max);
+        return repository.findBooksByPriceOldBetween(min,max);
     }
 
+    //TODO реализовать метод в контроллере и по возможности в морде
     public List<Book> getBooksWithPrice(Integer price){
         return repository.findBooksByPriceOldIs(price);
     }
 
-    public List<Book> getBooksWithMaxPrice() {
+    public List<Book> getBooksWithMaxPrice(){
         return repository.getBooksWithMaxDiscount();
     }
 
@@ -62,8 +63,13 @@ public class BookService {
         return repository.getBestsellers();
     }
 
-    public Page<Book> getPageofRecommendedBooks(Integer offset, Integer limit){
+    public Page<Book> getPageOfRecommendedBooks(Integer offset, Integer limit){
         Pageable nextPage = PageRequest.of(offset,limit);
         return repository.findAll(nextPage);
+    }
+
+    public Page<Book> getPageOfSearchResultBooks(String searchWord, Integer offset, Integer limit){
+        Pageable nextPage = PageRequest.of(offset,limit);
+        return repository.findBookByTitleContaining(searchWord,nextPage);
     }
 }

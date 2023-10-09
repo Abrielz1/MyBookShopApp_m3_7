@@ -1,13 +1,19 @@
 package com.example.MyBookShopApp.controllers;
 
+import com.example.MyBookShopApp.dto.BooksPageDto;
+import com.example.MyBookShopApp.dto.SearchWordDto;
 import com.example.MyBookShopApp.entity.book.entity.Author;
 import com.example.MyBookShopApp.entity.book.entity.Book;
 import com.example.MyBookShopApp.service.AuthorService;
 import com.example.MyBookShopApp.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
@@ -38,4 +44,62 @@ public class MainPageController {
     // Подключить постраничный вывод для лент «Новинки»
     // Популярное» на главной странице
 
+    @GetMapping("/books/recommended")
+    @ResponseBody
+    public BooksPageDto getBooksPage(@RequestParam("offset") Integer offset,
+                                     @RequestParam("limit") Integer limit) {
+        return new BooksPageDto(bookService.getPageOfRecommendedBooks(offset, limit).getContent());
+    }
+
+    @GetMapping(value = {"/search", "/search/{searchWord}"})
+    public String getSearchResults(@PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto,
+                                   Model model) {
+        model.addAttribute("searchWordDto", searchWordDto);
+        model.addAttribute("searchResults",
+                bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), 0, 5).getContent());
+        return "/search/index";
+    }
+
+    @GetMapping("/search/page/{searchWord}")
+    @ResponseBody
+    public BooksPageDto getNextSearchPage(@RequestParam("offset") Integer offset,
+                                          @RequestParam("limit") Integer limit,
+                                          @PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto) {
+        return new BooksPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit).getContent());
+    }
+
+//    @ModelAttribute("booksList")
+//    public List<Book> bookList() {
+//        return bookService.getBooksData();
+//    }
+//
+//    @ModelAttribute("authorsList")
+//    public List<Author> authorsList() {
+//        return authorService.getAuthorsData();
+//    }
+//
+//    @GetMapping("/recent")
+//    public String recentPage() {
+//        return "/books/recent";
+//    }
+//
+//    @GetMapping("/popular")
+//    public String popularPage() {
+//        return "/books/popular";
+//    }
+//
+//    @GetMapping("/postponed")
+//    public String postponedPage() {
+//        return "/postponed";
+//    }
+//
+//    @GetMapping("/cart")
+//    public String cartPage() {
+//        return "/cart";
+//    }
+//
+//    @GetMapping("/search")
+//    public String searchPage() {
+//        return "/search/index";
+//    }
 }
