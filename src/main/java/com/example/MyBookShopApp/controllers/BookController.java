@@ -32,8 +32,8 @@ public class BookController {
 
     @ModelAttribute("booksList")
     public List<Book> bookList() {
-        System.out.println(bookService.getBooksData());
-        return bookService.getBooksData();
+
+        return bookService.getPageOfRecommendedBooks(0, 6).getContent();
     }
 
     @ModelAttribute("authorsList")
