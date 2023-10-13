@@ -50,8 +50,7 @@
                     <li class="menu-item"><a class="menu-link" href="genres.html"
                                              th:text="#{topbar.genres}" th:href="@{/genres}"></a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="nove.html"
-                                             th:text="#{topbar.news}" th:href="@{/}"></a>
+                    <li class="menu-item" th:class="${recent}"><a class="menu-link"  th:href="@{/recent}">Новинки</a>
                     </li>
                     <li class="menu-item"><a class="menu-link" href="popular.html"
                                              th:text="#{topbar.popular}" th:href="@{/popular}"></a>

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.util.List;
 
 @Repository
@@ -16,7 +17,7 @@ public interface BookRepo extends JpaRepository<Book, Long> {
 
     List<Book> findBooksByAuthor_FirstName(String name);
 
-    @Query("from Book")
+    @Query("FROM Book")
     List<Book> customFindAllBooks();
 
     //NEW BOOK REST REPOSITORY COMMANDS
@@ -29,7 +30,7 @@ public interface BookRepo extends JpaRepository<Book, Long> {
 
     List<Book> findBooksByPriceOldIs(Integer price);
 
-    @Query("from Book where isBestseller = 1")
+    @Query("FROM Book WHERE isBestseller = 1")
     List<Book> getBestsellers();
 
 
@@ -37,4 +38,16 @@ public interface BookRepo extends JpaRepository<Book, Long> {
     List<Book> getBooksWithMaxDiscount();
 
     Page<Book> findBookByTitleContaining(String title, Pageable nextPage);
+
+    //-----------
+
+    @Query(value = "SELECT * FROM public.books " +
+                   "WHERE books.pub_date " +
+                   "BETWEEN ?1 AND ?2 ORDER BY books.pub_date DESC", nativeQuery = true)
+    Page<Book> getBooksByReleaseDateInReverseOrder(Pageable nextPage, Date date1, Date date2);
+
+    @Query(value = "SELECT * FROM public.books " +
+                   "WHERE books.pub_date BETWEEN ?1 AND ?2 " +
+                   "ORDER BY books.pub_date ASC ", nativeQuery = true)
+    Page<Book> getBooksByReleaseDateInNaturalOrder(Pageable nextPage, Date date1, Date date2);
 }

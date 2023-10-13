@@ -23,13 +23,6 @@ public class BookController {
 
     private final AuthorService authorService;
 
-//    @Autowired
-//    public BookController(BookService bookService, AuthorService authorService) {
-//        this.bookService = bookService;
-//        this.authorService = authorService;
-//    }
-
-
     @ModelAttribute("booksList")
     public List<Book> bookList() {
 
@@ -65,4 +58,5 @@ public class BookController {
     public String searchPage() {
         return "/search/index";
     }
+
 }

@@ -6,4 +6,4 @@ databaseChangeLog:
   - include:
       file: data/books.sql
   - include:
-      file: data/genre.sql
+      file: data/genres.sql
