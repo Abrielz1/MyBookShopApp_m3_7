@@ -89,20 +89,6 @@ public class BookService {
         Date sqlFrom = Date.valueOf(from);
         Date sqlTo = Date.valueOf(to);
 
-        String s = "2023-09-23";
-        String a = "2023-10-02";
-
-        Date sqlS = Date.valueOf(s);
-        Date sqlA = Date.valueOf(a);
-        System.out.println();
-        System.out.println(sqlFrom);
-        System.out.println(sqlTo);
-
-        System.out.println();
-
-       System.out.println(sqlFrom.equals(sqlS));
-        System.out.println(sqlTo.equals(sqlA));
-        System.out.println();
         if (sqlFrom.toLocalDate().isAfter(sqlTo.toLocalDate())) {
 
             return repository.getBooksByReleaseDateInReverseOrder(nextPage, sqlFrom, sqlTo);
