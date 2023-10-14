@@ -82,7 +82,7 @@ public class MainPageController {
     @ModelAttribute("recentBooks")
     @ResponseBody
     public List<Book> recentBooks() {
-        return new ArrayList<>(); // bookService.getPageOfRecentBooks(0, 20).getContent();
+        return new ArrayList<>();
     }
 
     @GetMapping("/books/recent")
