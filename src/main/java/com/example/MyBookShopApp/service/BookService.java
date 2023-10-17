@@ -4,7 +4,7 @@ import com.example.MyBookShopApp.entity.book.entity.Book;
 import com.example.MyBookShopApp.exceptions.ObjectNotFoundException;
 import com.example.MyBookShopApp.repository.AuthorRepo;
 import com.example.MyBookShopApp.repository.BookRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,17 +13,12 @@ import java.sql.Date;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BookService {
 
     private final AuthorRepo authorRepo;
 
     private final BookRepo repository;
-
-    @Autowired
-    public BookService(AuthorRepo authorRepo, BookRepo repository) {
-        this.authorRepo = authorRepo;
-        this.repository = repository;
-    }
 
     public List<Book> getBooksData() {
         return repository.findAll();
@@ -34,13 +29,13 @@ public class BookService {
         authorRepo.findById(authorId).orElseThrow(() ->
                 new ObjectNotFoundException("Author not found!"));
 
-        return repository.findAllByAuthorId(authorId);
+        return repository.getAllByAuthorId(authorId);
     }
 
     //NEW BOOK SERVICE METHODS
 
     public List<Book> getBooksByAuthor(String authorName){
-        return repository.findBooksByAuthorFirstNameContaining(authorName);
+        return repository.getBooksByAuthor(authorName);
     }
 
     public List<Book> getBooksByTitle(String title){
@@ -71,12 +66,12 @@ public class BookService {
 
     public Page<Book> getPageOfSearchResultBooks(String searchWord, Integer offset, Integer limit){
         Pageable nextPage = PageRequest.of(offset,limit);
-        return repository.findBookByTitleContaining(searchWord,nextPage);
+        return repository.findBookByTitleContaining(searchWord, nextPage);
     }
 
     public Page<Book> getAllBooksByName(String searchWord, Integer offset, Integer limit) {
         Pageable nextPage = PageRequest.of(offset,limit);
-        return repository.getAllBooksByName(searchWord,nextPage);
+        return repository.getAllBooksByName(searchWord, nextPage);
     }
 
     //--------------+

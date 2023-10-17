@@ -23,18 +23,13 @@ import java.util.Map;
 
 @Api(description = "authors data")
 @Controller
-//@RequiredArgsConstructor()
+@RequiredArgsConstructor()
 public class AuthorController {
 
     private final AuthorService authorService;
 
     private final BookService bookService;
 
-    @Autowired //снести
-    public AuthorController(AuthorService authorService, BookService bookService) {
-        this.authorService = authorService;
-        this.bookService = bookService;
-    }
 
     @ApiOperation("method for acquiring list of all authors," +
             " sorted and ordered by first letter their last name")

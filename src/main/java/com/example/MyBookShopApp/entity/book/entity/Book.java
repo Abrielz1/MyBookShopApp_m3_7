@@ -1,5 +1,7 @@
 package com.example.MyBookShopApp.entity.book.entity;
 
+import com.example.MyBookShopApp.entity.book.links.Book2Author;
+import com.example.MyBookShopApp.entity.book.links.Book2User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
@@ -17,9 +19,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.sql.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -67,9 +70,15 @@ public class Book {
     @Column
     private Short rating;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    @OneToMany
+    @JoinColumn(name = "book_id")
     @JsonIgnore
     @ToString.Exclude
-    private Author author;
+    private List<Book2Author> book2AuthorList;
+
+    @OneToMany
+    @JoinColumn(name = "book_id")
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Book2User> book2UserList;
 }

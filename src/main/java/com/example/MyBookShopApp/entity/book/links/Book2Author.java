@@ -10,7 +10,6 @@ import lombok.ToString;
 import org.hibernate.proxy.HibernateProxy;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,19 +31,19 @@ public class Book2Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "book_id", columnDefinition = "INT NOT NULL")
-//    private Book book;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
+
+//    @Column(name = "book_id", columnDefinition = "INT NOT NULL")
+//    private Long bookId;
 //
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "author_id", columnDefinition = "INT NOT NULL")
-//    private Author author;
-
-    @Column(name = "book_id", columnDefinition = "INT NOT NULL")
-    private Long bookId;
-
-    @Column(name = "author_id", columnDefinition = "INT NOT NULL")
-    private Long authorId;
+//    @Column(name = "author_id", columnDefinition = "INT NOT NULL")
+//    private Long authorId;
 
     @Column(name = "sort_index", columnDefinition = "INT NOT NULL  DEFAULT 0")
     private int sortIndex;

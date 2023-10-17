@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.entity.book.links;
-
+import com.example.MyBookShopApp.entity.book.entity.Book;
+import com.example.MyBookShopApp.entity.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -36,11 +39,13 @@ public class Book2User {
     @Column(columnDefinition = "INT NOT NULL")
     private Long typeId;
 
-    @Column(columnDefinition = "INT NOT NULL")
-    private Long bookId;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private User user;
 
-    @Column(columnDefinition = "INT NOT NULL")
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
 
     @Override
     public final boolean equals(Object o) {

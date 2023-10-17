@@ -12,16 +12,25 @@ import java.util.List;
 @Repository
 public interface BookRepo extends JpaRepository<Book, Long> {
 
-    List<Book> findAllByAuthorId(Long authorId);
+    @Query(value = """
+                   SELECT * FROM public.authors WHERE authors.id = ?
+                   """, nativeQuery = true)
+    List<Book> getAllByAuthorId(Long authorId);
 
-    List<Book> findBooksByAuthor_FirstName(String name);
+ //   List<Book> findBooksByAuthor_FirstName(String name);
 
-    @Query("FROM Book")
-    List<Book> customFindAllBooks();
+//    @Query("FROM Book")
+//    List<Book> customFindAllBooks();
 
     //NEW BOOK REST REPOSITORY COMMANDS
 
-    List<Book> findBooksByAuthorFirstNameContaining(String authorsFirstName);
+    @Query(value = """
+           SELECT * FROM public.books as b 
+           join book2author b2a on b.id = b2a.book_id 
+           join authors a on a.id = b2a.author_id 
+           WHERE a.first_name like concat('%', ?, '%')
+           """, nativeQuery = true)
+    List<Book> getBooksByAuthor(String authorsFirstName);
 
     List<Book> findBooksByTitleContaining(String bookTitle);
 

@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.entity.book.entity;
 
+import com.example.MyBookShopApp.entity.book.links.Book2Author;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
@@ -10,15 +11,14 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.Type;
 import org.hibernate.proxy.HibernateProxy;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,7 +37,7 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "first_name")
     private String firstName;
 
     @Column(name = "patronym")
@@ -55,10 +55,11 @@ public class Author {
     @Type(type = "org.hibernate.type.TextType")
     private String biography; //биография, характеристика
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany
+    @JoinColumn(name = "author_id")
     @JsonIgnore
     @ToString.Exclude
-    private List<Book> bookList = new ArrayList<>();
+    private List<Book2Author> book2AuthorList;
 
     @Override
     public final boolean equals(Object o) {

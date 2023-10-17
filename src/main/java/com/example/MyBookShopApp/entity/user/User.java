@@ -1,23 +1,27 @@
 package com.example.MyBookShopApp.entity.user;
 
+import com.example.MyBookShopApp.entity.book.links.Book2User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.proxy.HibernateProxy;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -27,7 +31,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Entity
-@Table(name = "USERS")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -39,7 +43,7 @@ public class User {
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
     private String hash;
 
-    @NonNull
+    @NotNull
     @Column(columnDefinition = "TIMESTAMP NOT NULL")
     private LocalDateTime regTime;
 
@@ -48,6 +52,12 @@ public class User {
 
     @NotBlank
     private String name;
+
+    @OneToMany
+    @JsonIgnore
+    @ToString.Exclude
+    @JoinColumn(name = "user_id")
+    private List<Book2User> book2UserList;
 
     @Override
     public final boolean equals(Object o) {
