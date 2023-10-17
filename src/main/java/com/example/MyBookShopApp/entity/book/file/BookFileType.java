@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.entity.book.file;
 
+import com.example.MyBookShopApp.entity.enums.BookTypesNames;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,7 +31,7 @@ public class BookFileType {
     private Long id;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
-    private String name;
+    private BookTypesNames name;
 
     @Column(columnDefinition = "TEXT")
     private String description;

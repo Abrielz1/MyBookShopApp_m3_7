@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.entity.book.links;
 
+import com.example.MyBookShopApp.entity.enums.ActionTypes;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,7 +34,7 @@ public class Book2UserType {
     private String code;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
-    private String name;
+    private ActionTypes name;
 
     @Override
     public final boolean equals(Object o) {
