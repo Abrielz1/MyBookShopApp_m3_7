@@ -36,7 +36,10 @@ public interface BookRepo extends JpaRepository<Book, Long> {
     @Query(value = "SELECT * FROM books WHERE discount = (SELECT MAX(discount) FROM books)", nativeQuery = true)
     List<Book> getBooksWithMaxDiscount();
 
-    Page<Book> findBookByTitleContaining(String title, Pageable nextPage);
+    Page<Book> findBookByTitleContaining(String bookTitle, Pageable nextPage);
+
+    @Query(value = "select * from public.books where books.title like concat('%', ?, '%')", nativeQuery = true)
+    Page<Book> getAllBooksByName(String title, Pageable nextPage);
 
     //-----------
 

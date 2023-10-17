@@ -64,6 +64,9 @@ public class Book {
     @JsonProperty("discount")
     private Double price; // скидка в процентах или 0, если её нет
 
+    @Column
+    private Short rating;
+
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     @JsonIgnore

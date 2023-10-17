@@ -35,54 +35,27 @@ public class MainPageController {
         return authorService.getAuthorsData();
     }
 
-    @ModelAttribute("searchWordDto")
-    public SearchWordDto searchWordDto() {
-        return new SearchWordDto();
-    }
-
-    @ModelAttribute("searchResults")
-    public List<Book> searchResults() {
-        return new ArrayList<>();
-    }
-
     @GetMapping("/")
     public String mainPage(){
         return "index";
-    }
-
-    @GetMapping(value = {"/search", "/search/{searchWord}"})
-    public String getSearchResults(@PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto,
-                                   Model model) {
-        model.addAttribute("searchWordDto", searchWordDto);
-        model.addAttribute("searchResults",
-                bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), 0, 5).getContent());
-        return "/search/index";
-    }
-
-    @GetMapping("/search/page/{searchWord}")
-    @ResponseBody
-    public BooksPageDto getNextSearchPage(@RequestParam("offset") Integer offset,
-                                          @RequestParam("limit") Integer limit,
-                                          @PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto) {
-        return new BooksPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit).getContent());
-    }
-
-    @ModelAttribute("recommendedBooks")
-    public List<Book> recommendedBooks() {
-        return bookService.getPageOfRecommendedBooks(0, 6).getContent();
-    }
-
-    @GetMapping("/books/recommended")
-    @ResponseBody
-    public BooksPageDto getBooksPage(@RequestParam("offset") Integer offset,
-                                                @RequestParam("limit") Integer limit) {
-        return new BooksPageDto(bookService.getPageOfRecommendedBooks(offset, limit).getContent());
     }
 
     @ModelAttribute("recentBooks")
     @ResponseBody
     public List<Book> recentBooks() {
         return new ArrayList<>();
+    }
+
+    @ModelAttribute("recommendedBooks")
+    public List<Book> recommendedBooks() {
+        return bookService.getPageOfRecommendedBooks(0, 5).getContent();
+    }
+
+    @GetMapping("/books/recommended")
+    @ResponseBody
+    public BooksPageDto getBooksPage(@RequestParam("offset") Integer offset,
+                                     @RequestParam("limit") Integer limit) {
+        return new BooksPageDto(bookService.getPageOfRecommendedBooks(offset, limit).getContent());
     }
 
     @GetMapping("/books/recent")
@@ -99,5 +72,35 @@ public class MainPageController {
         String resTo = newTo[2].concat("-" + newTo[1]).concat("-" + newTo[0]);
 
         return new BooksPageDto(bookService.getPageOfNewestBooks(resFrom, resTo, offset, limit).getContent());
+    }
+
+    @ModelAttribute("searchWordDto")
+    public SearchWordDto searchWordDto() {
+        return new SearchWordDto();
+    }
+
+    @ModelAttribute("searchResults")
+    public List<Book> searchResults() {
+        return new ArrayList<>();
+    }
+
+
+    @GetMapping(value = {"/search", "/search/{searchWord}"})
+    public String getSearchResults(@PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto,
+                                   Model model) {
+        model.addAttribute("searchWordDto", searchWordDto);
+        model.addAttribute("searchResults",
+                //         bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), 0, 5).getContent());
+           bookService.getAllBooksByName(searchWordDto.getExample(), 0, 5).getContent());
+        return "/search/index";
+    }
+
+    @GetMapping("/search/page/{searchWord}")
+    @ResponseBody
+    public BooksPageDto getNextSearchPage(@RequestParam("offset") Integer offset,
+                                          @RequestParam("limit") Integer limit,
+                                          @PathVariable(value = "searchWord", required = false) SearchWordDto searchWordDto) {
+        //   return new BooksPageDto(bookService.getPageOfSearchResultBooks(searchWordDto.getExample(), offset, limit).getContent());
+         return new BooksPageDto(bookService.getAllBooksByName(searchWordDto.getExample(), offset, limit).getContent());
     }
 }

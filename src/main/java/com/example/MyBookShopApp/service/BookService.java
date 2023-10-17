@@ -10,11 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -77,6 +72,11 @@ public class BookService {
     public Page<Book> getPageOfSearchResultBooks(String searchWord, Integer offset, Integer limit){
         Pageable nextPage = PageRequest.of(offset,limit);
         return repository.findBookByTitleContaining(searchWord,nextPage);
+    }
+
+    public Page<Book> getAllBooksByName(String searchWord, Integer offset, Integer limit) {
+        Pageable nextPage = PageRequest.of(offset,limit);
+        return repository.getAllBooksByName(searchWord,nextPage);
     }
 
     //--------------+

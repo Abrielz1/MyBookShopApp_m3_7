@@ -8,10 +8,10 @@
             </a>
         </div>
         <div class="Card-content">
-            <strong class="Card-title">
+            <strong class="Card-title" >
                 <a href="#" th:text="${book.title}"></a>
             </strong>
-            <div class="Card-description"
+            <div class="Card-description " data-load="recommended" data-loadoffset="0" data-loadlimit="6"
                  th:text="${book.author.getFirstName() + ' ' + book.author.getPatronym() + ' ' + book.author.getLastName()}"></div>
             <div class="Card-cost">
                 <span class="Card-priceOld">₽300.00</span>

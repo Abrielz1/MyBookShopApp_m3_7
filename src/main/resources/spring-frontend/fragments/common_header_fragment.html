@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <header class="Header" th:fragment="head">
     <div class="Header-rowMain">
         <div class="wrap">
@@ -50,7 +51,8 @@
                     <li class="menu-item"><a class="menu-link" href="genres.html"
                                              th:text="#{topbar.genres}" th:href="@{/genres}"></a>
                     </li>
-                    <li class="menu-item" th:class="${recent}"><a class="menu-link"  th:href="@{/recent}">Новинки</a>
+                    <li class="menu-item" ><a class="menu-link"
+                                              th:text="#{topbar.recent}" th:href="@{/recent}">Новинки</a>
                     </li>
                     <li class="menu-item"><a class="menu-link" href="popular.html"
                                              th:text="#{topbar.popular}" th:href="@{/popular}"></a>
