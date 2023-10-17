@@ -1,5 +1,7 @@
 package com.example.MyBookShopApp.entity.book.links;
 
+import com.example.MyBookShopApp.entity.book.entity.Book;
+import com.example.MyBookShopApp.entity.book.genre.Genre;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.Objects;
 
@@ -29,11 +33,13 @@ public class Book2Genre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "INT NOT NULL")
-    private Long bookId;
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
 
-    @Column(columnDefinition = "INT NOT NULL")
-    private Long genreId;
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
 
     @Override
     public final boolean equals(Object o) {

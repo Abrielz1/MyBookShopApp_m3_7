@@ -1,5 +1,7 @@
 package com.example.MyBookShopApp.entity.book.genre;
 
+import com.example.MyBookShopApp.entity.book.links.Book2Genre;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -14,7 +16,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -34,7 +39,7 @@ public class Genre {
     private Long id;
 
     @Column(columnDefinition = "INT")
-    //
+    //идентификатор родительского жанра или NULL, если жанр является корневым
     private Long parentId;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
@@ -44,6 +49,11 @@ public class Genre {
     private String name;
 
     //book2genre привязка книг к жанрам
+    @OneToMany
+    @JoinColumn(name = "genre_id")
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Book2Genre> book2GenreList;
 
     @Override
     public final boolean equals(Object o) {
