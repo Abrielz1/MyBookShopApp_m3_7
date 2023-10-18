@@ -21,8 +21,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -57,7 +57,7 @@ public class User {
     @JsonIgnore
     @ToString.Exclude
     @JoinColumn(name = "user_id")
-    private List<Book2User> book2UserList;
+    private Set<Book2User> book2UserList;
 
     @Override
     public final boolean equals(Object o) {

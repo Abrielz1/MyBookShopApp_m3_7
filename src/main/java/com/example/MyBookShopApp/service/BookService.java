@@ -59,9 +59,12 @@ public class BookService {
         return repository.getBestsellers();
     }
 
-    public Page<Book> getPageOfRecommendedBooks(Integer offset, Integer limit){
+    public List<Book> getPageOfRecommendedBooks(Integer offset, Integer limit){
         Pageable nextPage = PageRequest.of(offset,limit);
-        return repository.findAll(nextPage);
+        List<Book> list = repository.getPageOfRecommendedBooks(nextPage).getContent();
+                //repository.findAll(nextPage).getContent();
+
+        return list;
     }
 
     public Page<Book> getPageOfSearchResultBooks(String searchWord, Integer offset, Integer limit){

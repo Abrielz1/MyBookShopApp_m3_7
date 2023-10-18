@@ -302,4 +302,228 @@
                                  constraintName="fkfjixh2vym2cvfj3ufxj91jem7" onDelete="NO ACTION" onUpdate="NO ACTION"
                                  referencedColumnNames="id" referencedTableName="authors"/>
     </changeSet>
+    <changeSet id="1697627393393-21" author="Abriel (generated)">
+        <addColumn tableName="book2user">
+            <column name="author_id" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627393393-22" author="Abriel (generated)">
+        <addColumn tableName="authors">
+            <column name="first_name" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627393393-23" author="Abriel (generated)">
+        <addColumn tableName="books">
+            <column name="rating" type="SMALLINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627393393-28" author="Abriel (generated)">
+        <addForeignKeyConstraint baseColumnNames="author_id" baseTableName="book2user"
+                                 constraintName="FK_BOOK2USER_ON_AUTHOR" referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
+    <changeSet id="1697627393393-31" author="Abriel (generated)">
+        <dropForeignKeyConstraint baseTableName="books" constraintName="fkfjixh2vym2cvfj3ufxj91jem7"/>
+    </changeSet>
+    <changeSet id="1697627393393-32" author="Abriel (generated)">
+        <dropColumn columnName="author_id" tableName="books"/>
+    </changeSet>
+    <changeSet id="1697627393393-33" author="Abriel (generated)">
+        <dropColumn columnName="name" tableName="authors"/>
+    </changeSet>
+    <changeSet id="1697627393393-1" author="Abriel (generated)">
+        <dropColumn columnName="author_id" tableName="book2author"/>
+
+        <dropColumn columnName="book_id" tableName="book2author"/>
+    </changeSet>
+    <changeSet id="1697627393393-2" author="Abriel (generated)">
+        <addColumn tableName="book2author">
+            <column name="author_id" type="BIGINT">
+                <constraints foreignKeyName="FK_BOOK2AUTHOR_ON_AUTHOR" references="authors(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627393393-3" author="Abriel (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="author_id" tableName="book2author"/>
+    </changeSet>
+    <changeSet id="1697627393393-5" author="Abriel (generated)">
+        <addColumn tableName="book2author">
+            <column name="book_id" type="BIGINT">
+                <constraints foreignKeyName="FK_BOOK2AUTHOR_ON_BOOK" references="books(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627393393-6" author="Abriel (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="book_id" tableName="book2author"/>
+    </changeSet>
+    <changeSet id="1697627393393-7" author="Abriel (generated)">
+        <dropColumn columnName="book_id" tableName="book2genre"/>
+
+        <dropColumn columnName="genre_id" tableName="book2genre"/>
+    </changeSet>
+    <changeSet id="1697627393393-8" author="Abriel (generated)">
+        <addColumn tableName="book2genre">
+            <column name="book_id" type="BIGINT">
+                <constraints foreignKeyName="FK_BOOK2GENRE_ON_BOOK" references="books(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627393393-9" author="Abriel (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="book_id" tableName="book2genre"/>
+    </changeSet>
+    <changeSet id="1697627393393-10" author="Abriel (generated)">
+        <dropColumn columnName="book_id" tableName="book2user"/>
+
+        <dropColumn columnName="user_id" tableName="book2user"/>
+    </changeSet>
+    <changeSet id="1697627393393-11" author="Abriel (generated)">
+        <addColumn tableName="book2user">
+            <column name="book_id" type="BIGINT">
+                <constraints foreignKeyName="FK_BOOK2USER_ON_BOOK" references="books(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627393393-12" author="Abriel (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="book_id" tableName="book2user"/>
+    </changeSet>
+    <changeSet id="1697627393393-14" author="Abriel (generated)">
+        <addColumn tableName="book2genre">
+            <column name="genre_id" type="BIGINT">
+                <constraints foreignKeyName="FK_BOOK2GENRE_ON_GENRE" references="genre(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627393393-15" author="Abriel (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="genre_id" tableName="book2genre"/>
+    </changeSet>
+    <changeSet id="1697627393393-16" author="Abriel (generated)">
+        <dropColumn columnName="type" tableName="user_contact"/>
+    </changeSet>
+    <changeSet id="1697627393393-17" author="Abriel (generated)">
+        <addColumn tableName="user_contact">
+            <column name="type" type="SMALLINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627393393-19" author="Abriel (generated)">
+        <addColumn tableName="book2user">
+            <column name="user_id" type="BIGINT">
+                <constraints foreignKeyName="FK_BOOK2USER_ON_USER" references="users(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627393393-20" author="Abriel (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="user_id" tableName="book2user"/>
+    </changeSet>
+    <changeSet id="1697627503232-21" author="Abriel (generated)">
+        <addColumn tableName="book2user">
+            <column name="author_id" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627503232-22" author="Abriel (generated)">
+        <addColumn tableName="authors">
+            <column name="first_name" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627503232-23" author="Abriel (generated)">
+        <addColumn tableName="books">
+            <column name="rating" type="SMALLINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627503232-28" author="Abriel (generated)">
+        <addForeignKeyConstraint baseColumnNames="author_id" baseTableName="book2user"
+                                 constraintName="FK_BOOK2USER_ON_AUTHOR" referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
+    <changeSet id="1697627503232-31" author="Abriel (generated)">
+        <dropForeignKeyConstraint baseTableName="books" constraintName="fkfjixh2vym2cvfj3ufxj91jem7"/>
+    </changeSet>
+    <changeSet id="1697627503232-32" author="Abriel (generated)">
+        <dropColumn columnName="author_id" tableName="books"/>
+    </changeSet>
+    <changeSet id="1697627503232-33" author="Abriel (generated)">
+        <dropColumn columnName="name" tableName="authors"/>
+    </changeSet>
+    <changeSet id="1697627503232-1" author="Abriel (generated)">
+        <dropColumn columnName="author_id" tableName="book2author"/>
+
+        <dropColumn columnName="book_id" tableName="book2author"/>
+    </changeSet>
+    <changeSet id="1697627503232-2" author="Abriel (generated)">
+        <addColumn tableName="book2author">
+            <column name="author_id" type="BIGINT">
+                <constraints foreignKeyName="FK_BOOK2AUTHOR_ON_AUTHOR" references="authors(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627503232-3" author="Abriel (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="author_id" tableName="book2author"/>
+    </changeSet>
+    <changeSet id="1697627503232-5" author="Abriel (generated)">
+        <addColumn tableName="book2author">
+            <column name="book_id" type="BIGINT">
+                <constraints foreignKeyName="FK_BOOK2AUTHOR_ON_BOOK" references="books(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627503232-6" author="Abriel (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="book_id" tableName="book2author"/>
+    </changeSet>
+    <changeSet id="1697627503232-7" author="Abriel (generated)">
+        <dropColumn columnName="book_id" tableName="book2genre"/>
+
+        <dropColumn columnName="genre_id" tableName="book2genre"/>
+    </changeSet>
+    <changeSet id="1697627503232-8" author="Abriel (generated)">
+        <addColumn tableName="book2genre">
+            <column name="book_id" type="BIGINT">
+                <constraints foreignKeyName="FK_BOOK2GENRE_ON_BOOK" references="books(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627503232-9" author="Abriel (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="book_id" tableName="book2genre"/>
+    </changeSet>
+    <changeSet id="1697627503232-10" author="Abriel (generated)">
+        <dropColumn columnName="book_id" tableName="book2user"/>
+
+        <dropColumn columnName="user_id" tableName="book2user"/>
+    </changeSet>
+    <changeSet id="1697627503232-11" author="Abriel (generated)">
+        <addColumn tableName="book2user">
+            <column name="book_id" type="BIGINT">
+                <constraints foreignKeyName="FK_BOOK2USER_ON_BOOK" references="books(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627503232-12" author="Abriel (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="book_id" tableName="book2user"/>
+    </changeSet>
+    <changeSet id="1697627503232-14" author="Abriel (generated)">
+        <addColumn tableName="book2genre">
+            <column name="genre_id" type="BIGINT">
+                <constraints foreignKeyName="FK_BOOK2GENRE_ON_GENRE" references="genre(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627503232-15" author="Abriel (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="genre_id" tableName="book2genre"/>
+    </changeSet>
+    <changeSet id="1697627503232-16" author="Abriel (generated)">
+        <dropColumn columnName="type" tableName="user_contact"/>
+    </changeSet>
+    <changeSet id="1697627503232-17" author="Abriel (generated)">
+        <addColumn tableName="user_contact">
+            <column name="type" type="SMALLINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627503232-19" author="Abriel (generated)">
+        <addColumn tableName="book2user">
+            <column name="user_id" type="BIGINT">
+                <constraints foreignKeyName="FK_BOOK2USER_ON_USER" references="users(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697627503232-20" author="Abriel (generated)">
+        <dropNotNullConstraint columnDataType="bigint" columnName="user_id" tableName="book2user"/>
+    </changeSet>
 </databaseChangeLog>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -26,7 +27,14 @@ public class BookController {
     @ModelAttribute("booksList")
     public List<Book> bookList() {
 
-        return bookService.getPageOfRecommendedBooks(0, 6).getContent();
+        return bookService.getPageOfRecommendedBooks(0, 6);
+    }
+
+    @ModelAttribute("recentBooks")
+    public List<Book> recommendedBooks() {
+        LocalDate resFrom = LocalDate.now().minusDays(10);
+        LocalDate resTo = LocalDate.now();
+        return bookService.getPageOfNewestBooks(resFrom.toString(), resTo.toString(), 0, 5).getContent();
     }
 
     @ModelAttribute("authorsList")

@@ -21,6 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @ApiModel(description = "data model for author of book entity")
 @Getter
@@ -59,7 +60,7 @@ public class Author {
     @JoinColumn(name = "author_id")
     @JsonIgnore
     @ToString.Exclude
-    private List<Book2Author> book2AuthorList;
+    private Set<Book2Author> book2AuthorList;
 
     @Override
     public final boolean equals(Object o) {

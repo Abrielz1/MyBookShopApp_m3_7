@@ -42,20 +42,20 @@ public class MainPageController {
 
     @ModelAttribute("recentBooks")
     @ResponseBody
-    public List<Book> recentBooks() {
-        return new ArrayList<>();
+    public BooksPageDto recentBooks() {
+        return new BooksPageDto();
     }
 
     @ModelAttribute("recommendedBooks")
     public List<Book> recommendedBooks() {
-        return bookService.getPageOfRecommendedBooks(0, 5).getContent();
+        return bookService.getPageOfRecommendedBooks(0, 5);
     }
 
     @GetMapping("/books/recommended")
     @ResponseBody
     public BooksPageDto getBooksPage(@RequestParam("offset") Integer offset,
                                      @RequestParam("limit") Integer limit) {
-        return new BooksPageDto(bookService.getPageOfRecommendedBooks(offset, limit).getContent());
+        return new BooksPageDto(bookService.getPageOfRecommendedBooks(offset, limit));
     }
 
     @GetMapping("/books/recent")

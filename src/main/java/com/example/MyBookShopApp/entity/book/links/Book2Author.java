@@ -39,12 +39,6 @@ public class Book2Author {
     @JoinColumn(name = "book_id")
     private Book book;
 
-//    @Column(name = "book_id", columnDefinition = "INT NOT NULL")
-//    private Long bookId;
-//
-//    @Column(name = "author_id", columnDefinition = "INT NOT NULL")
-//    private Long authorId;
-
     @Column(name = "sort_index", columnDefinition = "INT NOT NULL  DEFAULT 0")
     private int sortIndex;
 

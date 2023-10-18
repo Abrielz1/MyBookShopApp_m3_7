@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <ul class="breadcrumbs" th:fragment="breadcrumps">
-    <li class="breadcrumbs-item"><a th:text="#{topbar.main}" th:href="@{/}">Главная</a>
+    <li class="breadcrumbs-item"> <a th:text="#{topbar.main}" th:href="@{/}"></a>
     </li>
-    <li class="breadcrumbs-item"><a th:text="#{topbar.genres}" th:href="@{/genres/index}">Книги</a>
+    <li class="breadcrumbs-item"> <a th:text="#{topbar.genres}" th:href="@{/genres}"></a>
     </li>
-    <li class="breadcrumbs-item breadcrumbs-item_current" th:text="#{topbar.news}" th:href="@{/}"><span>Новинки</span>
+    <li class="breadcrumbs-item"> <a th:text="#{topbar.recent}" th:href="@{/recent}"></a>
+    </li>
+    <li class="breadcrumbs-item"> <a th:text="#{topbar.popular}" th:href="@{/popular}"></a>
     </li>
 </ul>
 </html>

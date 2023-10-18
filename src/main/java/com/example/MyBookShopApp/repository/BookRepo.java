@@ -13,7 +13,9 @@ import java.util.List;
 public interface BookRepo extends JpaRepository<Book, Long> {
 
     @Query(value = """
-                   SELECT * FROM public.authors WHERE authors.id = ?
+           SELECT * FROM  public.books as b 
+           join book2author b2a on b.id = b2a.book_id 
+           join authors a on a.id = b2a.author_id WHERE a.id = ?
                    """, nativeQuery = true)
     List<Book> getAllByAuthorId(Long authorId);
 
@@ -61,4 +63,14 @@ public interface BookRepo extends JpaRepository<Book, Long> {
                    "WHERE books.pub_date BETWEEN ?1 AND ?2 " +
                    "ORDER BY books.pub_date ASC ", nativeQuery = true)
     Page<Book> getBooksByReleaseDateInNaturalOrder(Pageable nextPage, Date date1, Date date2);
+
+
+    //-----+
+
+    @Query(value = """
+           SELECT * FROM public.books as b 
+           join book2author b2a on b.id = b2a.book_id 
+           join authors a on a.id = b2a.author_id
+           """, nativeQuery = true)
+    Page<Book> getPageOfRecommendedBooks(Pageable nextPage);
 }

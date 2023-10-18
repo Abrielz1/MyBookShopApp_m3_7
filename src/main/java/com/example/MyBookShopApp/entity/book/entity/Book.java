@@ -8,12 +8,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.Type;
+import org.hibernate.proxy.HibernateProxy;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,11 +25,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.sql.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(description = "entity representing a book")
@@ -67,24 +69,56 @@ public class Book {
     @JsonProperty("discount")
     private Double price; // скидка в процентах или 0, если её нет
 
-    @Column
+    @Column(name = "rating")
     private Short rating;
 
     @OneToMany
     @JoinColumn(name = "book_id")
     @JsonIgnore
     @ToString.Exclude
-    private List<Book2Author> book2AuthorList;
+    private Set<Book2Author> book2AuthorList;
 
     @OneToMany
     @JoinColumn(name = "book_id")
     @JsonIgnore
     @ToString.Exclude
-    private List<Book2User> book2UserList;
+    private Set<Book2User> book2UserList;
 
     @OneToMany
     @JoinColumn(name = "book_id")
     @JsonIgnore
     @ToString.Exclude
-    private List<Book2Genre> book2GenreList;
+    private Set<Book2Genre> book2GenreList;
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
+        Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
+        if (thisEffectiveClass != oEffectiveClass) return false;
+        Book book = (Book) o;
+        return getId() != null && Objects.equals(getId(), book.getId());
+    }
+
+    @Override
+    public final int hashCode() {
+        return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", pubDate=" + pubDate +
+                ", isBestseller=" + isBestseller +
+                ", slug='" + slug + '\'' +
+                ", title='" + title + '\'' +
+                ", image='" + image + '\'' +
+                ", description='" + description + '\'' +
+                ", priceOld=" + priceOld +
+                ", price=" + price +
+                ", rating=" + rating +
+                '}';
+    }
 }

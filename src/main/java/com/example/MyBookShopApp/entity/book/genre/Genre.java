@@ -19,8 +19,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -53,7 +53,7 @@ public class Genre {
     @JoinColumn(name = "genre_id")
     @JsonIgnore
     @ToString.Exclude
-    private List<Book2Genre> book2GenreList;
+    private Set<Book2Genre> book2GenreList;
 
     @Override
     public final boolean equals(Object o) {
