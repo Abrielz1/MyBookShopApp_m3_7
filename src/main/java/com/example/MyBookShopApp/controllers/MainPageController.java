@@ -35,6 +35,7 @@ public class MainPageController {
         return authorService.getAuthorsData();
     }
 
+
     @GetMapping("/")
     public String mainPage(){
         return "index";

@@ -3,6 +3,7 @@ package com.example.MyBookShopApp.entity.book.entity;
 import com.example.MyBookShopApp.entity.book.links.Book2Author;
 import com.example.MyBookShopApp.entity.book.links.Book2Genre;
 import com.example.MyBookShopApp.entity.book.links.Book2User;
+import com.example.MyBookShopApp.entity.book.links.Book2UserType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
@@ -89,6 +90,12 @@ public class Book {
     @JsonIgnore
     @ToString.Exclude
     private Set<Book2Genre> book2GenreList;
+
+    @OneToMany
+    @JoinColumn(name = "book_id")
+    @JsonIgnore
+    @ToString.Exclude
+    private Set<Book2UserType> book2UserType;
 
     @Override
     public final boolean equals(Object o) {

@@ -1,6 +1,7 @@
 package com.example.MyBookShopApp.entity.user;
 
 import com.example.MyBookShopApp.entity.book.links.Book2User;
+import com.example.MyBookShopApp.entity.book.links.Book2UserType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -58,6 +59,12 @@ public class User {
     @ToString.Exclude
     @JoinColumn(name = "user_id")
     private Set<Book2User> book2UserList;
+
+    @OneToMany
+    @JsonIgnore
+    @ToString.Exclude
+    @JoinColumn(name = "user_id")
+    private Set<Book2UserType> book2UserType;
 
     @Override
     public final boolean equals(Object o) {

@@ -73,4 +73,9 @@ public interface BookRepo extends JpaRepository<Book, Long> {
            join authors a on a.id = b2a.author_id
            """, nativeQuery = true)
     Page<Book> getPageOfRecommendedBooks(Pageable nextPage);
+
+    @Query(value = """
+           SELECT * FROM public.books ORDER BY books.rating DESC 
+           """, nativeQuery = true)
+    List<Book> getPageOfBooksByRating(Pageable nextPage);
 }

@@ -40,7 +40,7 @@ public class Book2User {
     private Long typeId;
 
     @ManyToOne
-    @JoinColumn(name = "author_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne

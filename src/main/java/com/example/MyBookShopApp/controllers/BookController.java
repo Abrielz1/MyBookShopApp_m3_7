@@ -24,10 +24,15 @@ public class BookController {
 
     private final AuthorService authorService;
 
-    @ModelAttribute("booksList")
-    public List<Book> bookList() {
 
-        return bookService.getPageOfRecommendedBooks(0, 6);
+    @ModelAttribute("bookRatings")
+    public List<Book> bookRatings() {
+        return bookService.getPageOfBooksByRating(0, 6);
+    }
+
+    @GetMapping("/popular")
+    public String popularPage() {
+        return "/books/popular";
     }
 
     @ModelAttribute("recentBooks")
@@ -36,6 +41,13 @@ public class BookController {
         LocalDate resTo = LocalDate.now();
         return bookService.getPageOfNewestBooks(resFrom.toString(), resTo.toString(), 0, 5).getContent();
     }
+
+    @ModelAttribute("booksList")
+    public List<Book> bookList() {
+
+        return bookService.getPageOfRecommendedBooks(0, 6);
+    }
+
 
     @ModelAttribute("authorsList")
     public List<Author> authorsList() {
@@ -47,10 +59,7 @@ public class BookController {
         return "/books/recent";
     }
 
-    @GetMapping("/popular")
-    public String popularPage() {
-        return "/books/popular";
-    }
+
 
     @GetMapping("/postponed")
     public String postponedPage() {

@@ -95,4 +95,11 @@ public class BookService {
             return repository.getBooksByReleaseDateInNaturalOrder(nextPage, sqlFrom, sqlTo);
         }
     }
+
+    //TODO метод переделать
+    public List<Book> getPageOfBooksByRating(Integer offset, Integer limit) {
+        Pageable nextPage = PageRequest.of(offset,limit);
+
+        return repository.getPageOfBooksByRating(nextPage);
+    }
 }
